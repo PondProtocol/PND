@@ -7,10 +7,10 @@ Notes for wallets, exchanges, indexers, and anything else that displays or moves
 An integration must key $PND on the pair (currency code, issuer address):
 
 ```json
-{ "currency": "PND", "issuer": "TODO_ISSUER_ADDRESS" }
+{ "currency": "PND", "issuer": "rPNDRmfNNrUZstkA23haCUkCp7qLEPnaYc" }
 ```
 
-Keying on `"PND"` alone will merge unrelated tokens that reuse the ticker. This matters most in search, portfolio totals, and any allowlist. The issuer address is TODO until mainnet issuance, so build the field now and fill it in from a config value rather than hardcoding a string in application code.
+Keying on `"PND"` alone will merge unrelated tokens that reuse the ticker. This matters most in search, portfolio totals, and any allowlist. Read the issuer from configuration rather than hardcoding it in application code, and note that the account is not yet funded on any network, so there is nothing to index until issuance happens.
 
 ## Amount encoding
 
@@ -27,6 +27,8 @@ Keep `value` as a string end to end. Issued currencies hold 15 decimal digits of
 | Did this payment deliver $PND? | Read `delivered_amount` in the transaction metadata, not the requested `Amount` |
 
 There is no supply field to read. `gateway_balances` obligations is the closest thing, and it is a snapshot of what the issuer owes at a given ledger.
+
+If you display a supply figure, derive it from obligations and label it as such. The 100 billion target is issuer policy, not a ledger cap, so do not render it as a maximum the protocol enforces — and do not compute a percentage-of-cap number that implies the ledger would reject issuance beyond it. Balances above 1 billion also carry fewer than 6 exact decimals; see the precision table in [`token-spec.md`](token-spec.md) before formatting treasury-scale amounts.
 
 ## Payments
 

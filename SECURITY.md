@@ -24,10 +24,10 @@ Disclosure contact: **TODO — no security contact is published yet.** Until one
 Anyone can check the asset without trusting a listing page:
 
 1. Read the issuer address from the trust line or amount object, not the currency code.
-2. Compare it against the address published in this repository — TODO, unpublished.
-3. Fetch the issuer account's `Domain` from the ledger and confirm that host serves `/.well-known/xrp-ledger.toml` listing the same address and the `PND` currency.
+2. Compare every character against the issuer published here: `rPNDRmfNNrUZstkA23haCUkCp7qLEPnaYc`. An address beginning with `rPND` is not evidence of anything — vanity prefixes are cheap to generate, and a near-miss lookalike is the obvious attack.
+3. Fetch the issuer account's `Domain` from the ledger and confirm that host serves `/.well-known/xrp-ledger.toml` listing the same address and the `PND` currency. No domain is published yet, so this step cannot pass today.
 
-Until step 2 has a value, no mainnet $PND has been published by this project, and any token claiming to be $PND should be treated as unverified.
+The issuing account is not funded on any network: `account_info` returns `actNotFound` on mainnet, testnet, and devnet. No $PND has been issued, and until step 3 can be completed, any token presented as $PND should be treated as unverified — including one issued by the address above.
 
 ## Handling of seeds
 
