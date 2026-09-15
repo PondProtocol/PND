@@ -42,7 +42,7 @@ The issuer's `AccountSet` establishes the token's behavior. Current values:
 Two policy flags are deliberately not covered here because they have not been decided:
 
 - **Freeze.** Whether the issuer will use individual freeze, global freeze, or permanently give up freezing via `asfNoFreeze` is a TODO. The issuance toolkit does not set any freeze flag today, which means freezing remains technically available to the issuer.
-- **Trust line clawback.** `asfAllowTrustLineClawback` is not set by the toolkit, and it can only be set on an account that has never had a trust line. The issuer has no trust lines today, so the choice is still open — but it expires on its own the moment the first line is created, which makes it the most time-sensitive open item in this repository. Note that this differs from $rPND, where clawback is permanently disabled at creation.
+- **Trust line clawback.** `asfAllowTrustLineClawback` is not set by the toolkit, and it can only be set on an account that has never had a trust line. The issuer has no trust lines today, so the choice is still open — but it expires on its own the moment the first line is created, which makes it the most time-sensitive open item in this repository. This differs from $rPND, where clawback is disabled and frozen in the create transaction, so it is a permanent guarantee rather than a standing decision; see [`rpnd/docs/rpnd-spec.md`](https://github.com/pondprotocol/rpnd/blob/main/docs/rpnd-spec.md#immutable-flags).
 
 Both flags materially affect what a holder is exposed to, so they should be resolved and documented before mainnet issuance.
 
@@ -96,6 +96,8 @@ curl -sS -X POST https://xrplcluster.com \
 Today this returns success with no obligations, since the account is unfunded. Two things to keep in mind when reading it later: the result is a snapshot at one ledger rather than a running total, and it counts what the issuer owes rather than what is liquid or in circulation, so tokens sitting in an operational account are included.
 
 Nothing in that mechanism stops the issuer from exceeding 100 billion. There is no transaction that would fail, no flag that would block it, and no amendment that changes this for IOUs. Anyone describing the 100 billion figure as a hard or on-chain cap is describing something the XRP Ledger does not provide.
+
+The contrast with $rPND is instructive: an MPT has `MaximumAmount`, which the ledger enforces and which cannot be raised after creation. That difference is one of the stated reasons $rPND is an MPT — see [`rpnd/docs/mpt-vs-iou.md`](https://github.com/pondprotocol/rpnd/blob/main/docs/mpt-vs-iou.md).
 
 ### What actually enforces the target
 

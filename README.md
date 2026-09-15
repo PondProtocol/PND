@@ -65,11 +65,13 @@ The $rPND metadata records `paired_iou_currency: "PND"`, which is a hint for ind
 
 | Repo | Role |
 | --- | --- |
-| [`pnd`](https://github.com/pondprotocol/pnd) | This repo — $PND token spec and integration reference |
-| [`rpnd`](https://github.com/pondprotocol/rpnd) | Issuance toolkit and operator source of truth for on-ledger config for both $PND and $rPND |
+| [`pnd`](https://github.com/pondprotocol/pnd) | This repo — $PND the IOU, for holders and integrators |
+| [`rpnd`](https://github.com/pondprotocol/rpnd) | $rPND the MPT, plus the operator source of truth for on-ledger config and issuance tooling for both tokens |
 | [`protocol`](https://github.com/pondprotocol/protocol) | Pond Protocol design and mechanics |
 
-Where the two disagree about an on-ledger parameter, `rpnd`'s `config/tokens.json` wins; this repo describes it, it does not configure it. Please open an issue when you spot a mismatch.
+Where the two disagree about an on-ledger parameter, `rpnd`'s `config/tokens.json` wins; this repo describes it, it does not configure it. Token policy that is not an on-ledger field — the supply target, for instance — is recorded here instead, because it corresponds to no transaction field. Please open an issue when you spot a mismatch.
+
+Useful reading in `rpnd`: [`docs/rpnd-spec.md`](https://github.com/pondprotocol/rpnd/blob/main/docs/rpnd-spec.md) for the normative $rPND spec, [`docs/mpt-vs-iou.md`](https://github.com/pondprotocol/rpnd/blob/main/docs/mpt-vs-iou.md) for why $rPND is an MPT while $PND stays an IOU, and [`docs/issuance.md`](https://github.com/pondprotocol/rpnd/blob/main/docs/issuance.md) for the operator procedure.
 
 ## Docs
 

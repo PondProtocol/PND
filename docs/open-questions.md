@@ -11,7 +11,7 @@ Nothing in this list has been filled in with a guess. If a number, address, or d
 | Issuing account for $PND | `rPNDRmfNNrUZstkA23haCUkCp7qLEPnaYc` (checksum valid; unfunded on mainnet, testnet, and devnet at the time of writing) | `README.md`, `docs/token-spec.md`, `docs/trust-lines.md`, `docs/integration.md`, `SECURITY.md` |
 | Target supply | 100,000,000,000 $PND, as issuer policy rather than a ledger cap | `README.md`, `docs/token-spec.md` |
 
-Both answers open follow-on questions, which are items 1, 5, 6, 7, and 10 below.
+Neither answer is simply "done". The supply figure is settled, but *how it is enforced* is not, and the issuer address is settled while the cold/hot split and the shared-account assumption are not. Those follow-on questions are items 1, 5, 6, 7, 10, and 11 below.
 
 ## On-ledger identifiers
 
@@ -37,24 +37,25 @@ Both answers open follow-on questions, which are items 1, 5, 6, 7, and 10 below.
 | # | Unknown | Appears in |
 | --- | --- | --- |
 | 10 | `pnd.operationalTrustLimit` in `rpnd`'s `config/tokens.json` is 1,000,000,000 — one hundredth of the 100 billion target, so a single operational account with that limit cannot take delivery of the full supply. Decide whether to raise the limit, distribute across multiple accounts, or leave it as a deliberate per-account ceiling. The change belongs in `rpnd`, not here | `rpnd` config; consequence noted in `docs/token-spec.md` |
+| 11 | Whether `rPNDRmfNNrUZstkA23haCUkCp7qLEPnaYc` is also the $rPND issuer. `rpnd`'s tooling assumes one cold account issues both assets and its [`docs/rpnd-spec.md`](https://github.com/pondprotocol/rpnd/blob/main/docs/rpnd-spec.md#identity) still records the issuer as a TODO. The owner published this address for $PND only. Sharing one account couples the two assets' flags, `Domain`, and reserve exposure, so confirm before either issuance — and fill in `rpnd`'s spec at the same time | `docs/pnd-vs-rpnd.md`; `rpnd` spec |
 
 ## Publication and identity
 
 | # | Unknown | Appears in |
 | --- | --- | --- |
-| 11 | Issuer `Domain` and the host serving `/.well-known/xrp-ledger.toml`. Until this exists, the published issuer address cannot be independently confirmed | `README.md`, `docs/token-spec.md`, `docs/integration.md`, `SECURITY.md` |
-| 12 | Canonical logo/icon asset and its public URL | `docs/integration.md` |
-| 13 | Public website and community links | `README.md` |
-| 14 | Security and disclosure contact | `SECURITY.md` |
-| 15 | Listings and integration contact | `docs/integration.md` |
+| 12 | Issuer `Domain` and the host serving `/.well-known/xrp-ledger.toml`. Until this exists, the published issuer address cannot be independently confirmed | `README.md`, `docs/token-spec.md`, `docs/integration.md`, `SECURITY.md` |
+| 13 | Canonical logo/icon asset and its public URL | `docs/integration.md` |
+| 14 | Public website and community links | `README.md` |
+| 15 | Security and disclosure contact | `SECURITY.md` |
+| 16 | Listings and integration contact | `docs/integration.md` |
 
 ## Timeline and relationship to $rPND
 
 | # | Unknown | Appears in |
 | --- | --- | --- |
-| 16 | Mainnet issuance date for $PND, and when the issuer account gets funded | `README.md`, `docs/token-spec.md` |
-| 17 | Economic relationship between $PND and $rPND: conversion mechanism, operator, which is the primary user-facing token, and whether the 100× gap between the $PND target and $rPND's configured `MaximumAmount` is intentional | `docs/pnd-vs-rpnd.md` |
-| 18 | Whether the `protocol` repo will specify $PND's role in protocol mechanics, and where that spec will live | `README.md` (relationship described only in general terms) |
+| 17 | Mainnet issuance date for $PND, and when the issuer account gets funded | `README.md`, `docs/token-spec.md` |
+| 18 | Economic relationship between $PND and $rPND: conversion mechanism, operator, which is the primary user-facing token, and whether the 100× gap between the $PND target and $rPND's configured `MaximumAmount` is intentional. `rpnd` records the same question in [`docs/rpnd-spec.md`](https://github.com/pondprotocol/rpnd/blob/main/docs/rpnd-spec.md#relationship-to-pnd) | `docs/pnd-vs-rpnd.md` |
+| 19 | Whether the `protocol` repo will specify $PND's role in protocol mechanics, and where that spec will live | `README.md` (relationship described only in general terms) |
 
 ## Deliberately absent
 
