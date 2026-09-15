@@ -2,7 +2,7 @@
 
 $PND lives on trust lines. This is the holder-side view: how to opt in, what a limit means, and what happens when you want out.
 
-Every address below is a placeholder until the issuer is published (TODO — mainnet issuer classic address).
+The issuer is `rPNDRmfNNrUZstkA23haCUkCp7qLEPnaYc`. That account is not funded on any network yet, so none of the transactions below can succeed today — this describes how holding $PND will work, not something you can do now. Holder addresses shown are placeholders.
 
 ## Opening a trust line
 
@@ -14,7 +14,7 @@ A holder opts in with a `TrustSet` naming the currency, the issuer, and a limit:
   "Account": "rHOLDER_ADDRESS",
   "LimitAmount": {
     "currency": "PND",
-    "issuer": "TODO_ISSUER_ADDRESS",
+    "issuer": "rPNDRmfNNrUZstkA23haCUkCp7qLEPnaYc",
     "value": "1000000"
   }
 }
@@ -56,10 +56,14 @@ The issuing account does not require destination tags (`tfRequireDestTag` is not
 The ticker is not the asset. Before trusting a $PND balance:
 
 1. Read the issuer address on the trust line, not the currency code.
-2. Compare it with the address published in this repository — TODO, not published yet.
-3. Confirm the issuer account's `Domain` resolves to a host serving `/.well-known/xrp-ledger.toml` that lists the same address.
+2. Compare it character by character with `rPNDRmfNNrUZstkA23haCUkCp7qLEPnaYc`. Vanity prefixes are cheap to generate, so an address that merely starts with `rPND` proves nothing.
+3. Confirm the issuer account's `Domain` resolves to a host serving `/.well-known/xrp-ledger.toml` that lists the same address. The domain is not published yet (TODO), so this step cannot be completed today.
 
-Anything that fails those checks is a different token that shares a ticker, whatever a wallet or listing page calls it.
+Anything that fails those checks is a different token that shares a ticker, whatever a wallet or listing page calls it. Since the issuer account is still unfunded, a mainnet trust line to that exact address would today be the only $PND line in existence — which is itself a reason to be suspicious of any $PND balance you are offered right now.
+
+## Checking outstanding supply
+
+The target supply is 100 billion $PND, and it is a policy commitment rather than a ledger rule. You can check what the issuer actually owes at any time with `gateway_balances` against the issuer, which reports its obligations. See [`token-spec.md`](token-spec.md) for the request, what the figure includes, and why the ledger cannot cap it.
 
 ## Freeze exposure
 
