@@ -27,7 +27,7 @@ Anyone can check the asset without trusting a listing page:
 2. Compare every character against the issuer published here: `rPNDRmfNNrUZstkA23haCUkCp7qLEPnaYc`. An address beginning with `rPND` is not evidence of anything — vanity prefixes are cheap to generate, and a near-miss lookalike is the obvious attack.
 3. Fetch the issuer account's `Domain` from the ledger and confirm that host serves `/.well-known/xrp-ledger.toml` listing the same address and the `PND` currency. No domain is published yet, so this step cannot pass today.
 
-The issuing account is not funded on any network: `account_info` returns `actNotFound` on mainnet, testnet, and devnet. No $PND has been issued, and until step 3 can be completed, any token presented as $PND should be treated as unverified — including one issued by the address above.
+The issuing account is funded on mainnet but carries no configuration, and it has issued nothing: `account_lines` on it returns an empty list and `gateway_balances` reports no obligations. Until step 3 can be completed, any token presented as $PND should be treated as unverified — including one issued by the address above. A funded account is not evidence of a launch.
 
 ## Handling of seeds
 
