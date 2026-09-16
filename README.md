@@ -31,8 +31,8 @@ The issuance model follows standard XRPL gateway practice:
 
 1. The **issuer** sets its account flags once (`AccountSet`). It is the address that appears in every $PND amount: `rPNDRmfNNrUZstkA23haCUkCp7qLEPnaYc`.
 2. The single "operational (hot) account" this README used to describe as a TODO is now two named accounts, decided by the owner:
-   - **Treasury** — `rPNDcL2UrGtSoGwruWx6ocMQ6ey8uPZm2b`. Holds the 90 billion $PND vesting escrow ([`docs/token-spec.md`](docs/token-spec.md)). Not yet funded — `account_info` returns `actNotFound` on mainnet.
-   - **Operations** — `rPNDAwFzgXzsjvUbVWz1ErB28v9SkcR2in`. Opens the trust line, receives the 10 billion circulating allocation, creates the AMM pool, and runs day-to-day distribution. Not yet funded — `account_info` returns `actNotFound` on mainnet.
+   - **Treasury** — `rPNDcL2UrGtSoGwruWx6ocMQ6ey8uPZm2b`. Holds remaining $PND for monthly holder airdrops after launch ([`docs/token-spec.md`](docs/token-spec.md)). Not yet funded — `account_info` returns `actNotFound` on mainnet.
+   - **Operations** — `rPNDAwFzgXzsjvUbVWz1ErB28v9SkcR2in`. Opens the trust line, receives the 10 billion public allocation at launch, creates the AMM pool, and runs day-to-day distribution. Not yet funded — `account_info` returns `actNotFound` on mainnet.
    Both addresses are the owner's decision, not yet applied on ledger: neither account exists yet. Do not describe them as funded, configured, or holding a trust line until `account_info` confirms it.
 3. Any other **holder** must submit their own `TrustSet` for `PND` / issuer before they can receive the token. There is no way for the issuer to push $PND to an account that has not opened a trust line.
 4. Issuance is a `Payment` from the issuer. New $PND exists the moment the issuer pays it out, and the outstanding amount is the sum of the issuer's negative trust line balances rather than a stored supply field.
