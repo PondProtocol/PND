@@ -36,6 +36,7 @@ The issuance model follows standard XRPL gateway practice:
    Both addresses are the owner's decision, not yet applied on ledger: neither account exists yet. Do not describe them as funded, configured, or holding a trust line until `account_info` confirms it.
 3. Any other **holder** must submit their own `TrustSet` for `PND` / issuer before they can receive the token. There is no way for the issuer to push $PND to an account that has not opened a trust line.
 4. Issuance is a `Payment` from the issuer. New $PND exists the moment the issuer pays it out, and the outstanding amount is the sum of the issuer's negative trust line balances rather than a stored supply field.
+5. A planned membership NFT sale (1,000 tokens at 5 XRP) is **not** a restriction on who may send `$PND`. Whether those NFTs are required for the monthly holder drops, or only a perk, is still open — [`docs/open-questions.md`](docs/open-questions.md) item 21. No NFT issuer address or marketplace is published here.
 
 [`docs/trust-lines.md`](docs/trust-lines.md) has the holder-side detail, including rippling, trust limits, and reserve implications. [`docs/integration.md`](docs/integration.md) covers the amount encoding and the mistakes that break integrations.
 

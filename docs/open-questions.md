@@ -45,6 +45,7 @@ Item 1 (operational address) is answered — see [Recently answered](#recently-a
 | 8 | What $PND represents: backing, redeemability, and the legal issuing entity | `README.md`, `docs/token-spec.md` |
 | 9 | Whether `TransferRate` stays at 0 long term | `docs/integration.md` (integrators are told to read it from the ledger) |
 | 20 | Monthly holder-airdrop snapshot: whether team, treasury, operations, and the AMM pool count as eligible $PND holders | `docs/token-spec.md` (working 10/10/80 intent; eligibility unset) |
+| 21 | Membership NFTs (planned 1000 at 5 XRP): whether holding one is required to receive a monthly drop or only a perk on top of $PND holdings; which account mints; whether the NFTs are transferable; who receives the 5 XRP. Permanent no-freeze means this cannot be “only members may send $PND.” | `docs/token-spec.md` |
 
 ## Cross-repo configuration
 
@@ -73,7 +74,8 @@ Items 10 (`operationalTrustLimit`) and 11 (shared issuer) are answered — see [
 These are not TODOs. They are claims this repository will not make until they are true:
 
 - No audit has been performed, so no audit status or report is referenced.
-- No exchange listing or liquidity venue is named.
+- No exchange listing, liquidity venue, or NFT marketplace is named.
+- No connect-wallet claim site is described. Membership, if minted, is an on-ledger `NFTokenOffer` accept.
 - No price, market cap, valuation, or yield figure appears anywhere.
 - The 100 billion figure is never described as on-chain, hard-capped, or ledger-enforced, because for an XRPL IOU it cannot be.
 - The `initialIssuance` value in `rpnd`'s config is a Devnet rehearsal default of 1,000,000 and is never presented as a supply figure.

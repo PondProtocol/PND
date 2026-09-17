@@ -102,6 +102,8 @@ This is not a conflict between the supply target and the display hint, and it ne
 
 Working operator intent for how that 100 billion is placed (also policy, not a ledger schedule): 10 billion to the public at launch, 10 billion to the team at launch, and 80 billion paid later to $PND holders in 10 billion monthly drops beginning 2027-01-01. XRPL has no holder-fanout primitive — each drop is ordinary `Payment`s after a balance snapshot. Which addresses count in that snapshot (team, treasury, operations, AMM pool) is **not decided in this repository**.
 
+A planned **1,000 membership NFTs** sold at 5 XRP each would sit on those monthly drops as an extra, not as an on-ledger gate. Permanent issuer no-freeze means membership cannot restrict who may send `$PND`. Whether the NFT is required to receive a drop, or only a perk on top of `$PND` holdings, is **not decided in this repository**. No NFT issuer address is published here yet. This repository does not list a marketplace or a claim site.
+
 ### Why there is no cap to enforce
 
 The XRP Ledger stores no supply figure for an issued currency and offers no field that limits one. An IOU comes into existence when the issuer sends a `Payment` denominated in it, and it ceases to exist when it is paid back to the issuer. Outstanding supply is therefore derived, not declared: it is the sum of the negative balances on the issuer's trust lines — what the issuer owes.
