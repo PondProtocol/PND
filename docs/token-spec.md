@@ -10,7 +10,7 @@ $PND is an XRP Ledger issued currency (IOU). This file describes the asset as it
 | Code form | standard 3-character (not the 160-bit hex form) |
 | Issuer | `rPNDRmfNNrUZstkA23haCUkCp7qLEPnaYc` — **issues both $PND and $rPND**, decided by the owner |
 | Issuer account ID | `F3D28C5718EC76EF8AD0666C77EC0E8954FCC85E` |
-| Treasury account | `rPNDcL2UrGtSoGwruWx6ocMQ6ey8uPZm2b` — holds the 90B vesting escrow. **Not funded** — `account_info` returns `actNotFound` on mainnet |
+| Treasury account | `rPNDcL2UrGtSoGwruWx6ocMQ6ey8uPZm2b` — holds the remaining supply for monthly holder airdrops (80B after launch payments). **Not funded** — `account_info` returns `actNotFound` on mainnet |
 | Operations account | `rPNDAwFzgXzsjvUbVWz1ErB28v9SkcR2in` — receives the 10B circulating allocation, creates the AMM pool, runs day-to-day operations. **Not funded** — `account_info` returns `actNotFound` on mainnet |
 | Asset class (XLS-26) | `other` |
 | Display decimals | 6 |
@@ -99,6 +99,10 @@ This is not a conflict between the supply target and the display hint, and it ne
 ## Supply
 
 **Target supply: 100,000,000,000 $PND (100 billion).** This is a policy commitment by the issuer. It is not, and cannot be, a ledger-enforced cap.
+
+Working operator intent for how that 100 billion is placed (also policy, not a ledger schedule): 10 billion to the public at launch, 10 billion to the team at launch, and 80 billion paid later to $PND holders in 10 billion monthly drops beginning 2027-01-01. XRPL has no holder-fanout primitive — each drop is ordinary `Payment`s after a balance snapshot. Which addresses count in that snapshot (team, treasury, operations, AMM pool) is **not decided in this repository**.
+
+A planned **1,000 membership NFTs** sold at 5 XRP each would sit on those monthly drops as an extra, not as an on-ledger gate. Permanent issuer no-freeze means membership cannot restrict who may send `$PND`. Whether the NFT is required to receive a drop, or only a perk on top of `$PND` holdings, is **not decided in this repository**. No NFT issuer address is published here yet. This repository does not list a marketplace or a claim site. `$PND` holdings, those NFTs, and later `$rPND` (if it is ever created) are **one overlay on this holder monthly — not a second vesting schedule**, and not TokenEscrow.
 
 ### Why there is no cap to enforce
 
